@@ -1,7 +1,7 @@
 <h2>Edit Historical Landmark</h2>
 
 <!-- add content here -->
-<form class="" action="index.html" method="post">
+<form class="" action="landmarks/<%=@landmark.id%>" method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
   <label for="name">Lankmark Name: </label>
   <input type="text" id="name" name="landmark[name]" value="<%=@landmark.name%>">
