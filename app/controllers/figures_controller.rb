@@ -57,7 +57,29 @@ class FiguresController < ApplicationController
   patch '/figures/:id' do
     figure = Figure.find_by(params[:id])
     figure.update(params[:figure])
-    binding.pry
+    if params[:title][:name] != ''              #Check to see if a new title was given
+      if !params[:figure][:title_ids]
+        params[:figure][:title_ids] = []
+      end
+      title = Title.new
+      title.name = params[:title][:name]
+      title.save
+      params[:figure][:title_ids] << title.id
+    end
+    figure.title_ids = params[:figure][:title_ids]
+    if params[:landmark][:name] != ''              #Check to see if a new landmark was given
+      landmark = Landmark.new
+      landmark.name = params[:landmark][:name]
+      if params[:landmark][:year_completed] != ''
+        landmark.year_completed = params[:landmark][:year_completed]
+      end
+      landmark.save
+      if !params[:figure][:landmark_ids]
+        params[:figure][:landmark_ids] = []
+      end
+      params[:figure][:landmark_ids] << landmark.id
+    end
+      figure.landmark_ids = params[:figure][:landmark_ids]
     redirect :"/figures/#{params[:id]}"
   end
 
