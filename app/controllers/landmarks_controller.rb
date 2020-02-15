@@ -9,7 +9,7 @@ class LandmarksController < ApplicationController
   end
 
   get '/landmarks/:id/edit' do
-
+    @landmark = Landmark.find_by(params[:id])
   end
 
   get '/landmarks/:id' do
