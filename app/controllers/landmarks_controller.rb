@@ -24,7 +24,8 @@ class LandmarksController < ApplicationController
   end
 
   patch '/landmarks/:id' do
-
+    landmark = Landmark.
+    redirect :"landmarks/#{landmark.id}"
   end
 
   delete '/landmarks/:id' do
